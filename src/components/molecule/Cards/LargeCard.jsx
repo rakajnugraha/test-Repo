@@ -53,7 +53,6 @@ export default function LargeCard() {
               <CustomButton
                 to="/cart"
                 text="Beli Sekarang"
-                order="text_first"
                 icon=">"
                 intent="accent_nobg"
                 hover="bg_soft"
@@ -64,10 +63,8 @@ export default function LargeCard() {
                 <CustomButton
                   text="Learn More"
                   icon=">"
-                  order="text_first"
                   intent="dark_nobg"
                   media="mediumLight"
-                  onClick={() => addToCart(poco)}
                 />
               </div>
             </div>
