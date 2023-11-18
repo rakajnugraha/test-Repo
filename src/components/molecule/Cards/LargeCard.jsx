@@ -4,11 +4,12 @@ import { CartContext } from "../../../context/CartProvider.jsx";
 import CustomButton from "../../Atoms/WithCVA/CustomButton.jsx";
 import TitleCard from "../../Atoms/InsideCard/TitleCard.jsx";
 import ImgCard from "../../Atoms/InsideCard/ImgCard.jsx";
+import LearnMoreButton from "../../Atoms/WithCVA/LearnMoreButton.jsx";
 
 export default function LargeCard() {
   const [dataPoco, setDataPoco] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [postsPerPage, setPostPerPage] = useState(2);
 
   const { cartItems, addToCart } = useContext(CartContext);
 
@@ -24,9 +25,9 @@ export default function LargeCard() {
     getApiPoco();
   }, []);
 
-  const firstPostIndex = currentPage - 1; // 0 = 1 - 1
-  const lastPostIndex = postsPerPage - 6; // 2 = 8 - 6
-  const currentLargCard = dataPoco.slice(firstPostIndex, lastPostIndex); // index ke 7, (sampai) index ke 8
+  // const firstPostIndex = currentPage - 1; // 0 = 1 - 1
+  // const lastPostIndex = postsPerPage - 6; // 2 = 8 - 6
+  const currentLargCard = dataPoco.slice(currentPage, postsPerPage); // index ke 7, (sampai) index ke 8
 
   return (
     <>
@@ -53,6 +54,7 @@ export default function LargeCard() {
               <CustomButton
                 to="/cart"
                 text="Beli Sekarang"
+                order="text_first"
                 icon=">"
                 intent="accent_nobg"
                 hover="bg_soft"
@@ -60,15 +62,17 @@ export default function LargeCard() {
                 onClick={() => addToCart(poco)}
               />
               <div className="toogle_icon">
-                <CustomButton
+                <LearnMoreButton
+                  id={poco.id}
                   text="Learn More"
                   icon=">"
+                  order="text_first"
                   intent="dark_nobg"
                   media="mediumLight"
                 />
               </div>
             </div>
-            <ImgCard PhonePic={poco.image} />
+            <ImgCard id={poco.id} PhonePic={poco.image} />
           </div>
         ))}
       </div>

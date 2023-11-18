@@ -4,11 +4,12 @@ import { CartContext } from "../../../context/CartProvider.jsx";
 import CustomButton from "../../Atoms/WithCVA/CustomButton.jsx";
 import TitleCard from "../../Atoms/InsideCard/TitleCard.jsx";
 import ImgCard from "../../Atoms/InsideCard/ImgCard.jsx";
+import LearnMoreButton from "../../Atoms/WithCVA/LearnMoreButton.jsx";
 
 export default function SmallCard() {
   const [dataPoco, setDataPoco] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(3);
+  const [postsPerPage, setPostPerPage] = useState(7);
 
   const { cartItems, addToCart } = useContext(CartContext);
 
@@ -24,9 +25,9 @@ export default function SmallCard() {
     getApiPoco();
   }, []);
 
-  const firstPostIndex = currentPage + 2; // 3 = 1 + 2
-  const lastPostIndex = postsPerPage - 1; // 7 = 8 - 1
-  const currentSmallCard = dataPoco.slice(firstPostIndex, lastPostIndex); // index ke 7, (sampai) index ke 8
+  // const firstPostIndex = currentPage + 2; // 3 = 1 + 2
+  // const lastPostIndex = postsPerPage - 1; // 7 = 8 - 1
+  const currentSmallCard = dataPoco.slice(currentPage, postsPerPage); // index ke 7, (sampai) index ke 8
 
   return (
     <>
@@ -41,7 +42,6 @@ export default function SmallCard() {
                   className={`flex flex-col bg-[#ffffff] items-center md:relative font-inter pt-10 px-5 text-center gap-2 md:hover:shadow-lg md:hover:ease-out md:duration-[250ms]`}
                 >
                   <TitleCard
-                    id="1"
                     Title={poco.name}
                     Specs={poco.specs}
                     StartingPrice={poco.price}
@@ -61,7 +61,9 @@ export default function SmallCard() {
                       hover="bg_soft"
                       onClick={() => addToCart(poco)}
                     />
-                    <CustomButton
+                    {/* <LearnMoreButton id={poco.id} /> */}
+                    <LearnMoreButton
+                      id={poco.id}
                       text="Learn More"
                       intent="light"
                       rounded="yes"
@@ -69,7 +71,7 @@ export default function SmallCard() {
                       size="small"
                     />
                   </div>
-                  <ImgCard PhonePic={poco.image} />
+                  <ImgCard id={poco.id} PhonePic={poco.image} />
                 </div>
               );
             })}
