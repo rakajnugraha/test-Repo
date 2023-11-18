@@ -56,7 +56,6 @@ export default function BannerCard() {
                     border="no"
                     icon="text_first"
                     hover="underline"
-                    onClick={() => addToCart(poco)}
                   />
                 </div>
               </div>

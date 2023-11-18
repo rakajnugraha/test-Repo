@@ -67,7 +67,6 @@ export default function SmallCard() {
                       rounded="yes"
                       border="always"
                       size="small"
-                      onClick={() => addToCart(poco)}
                     />
                   </div>
                   <ImgCard PhonePic={poco.image} />
