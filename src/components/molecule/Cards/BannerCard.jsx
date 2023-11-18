@@ -4,6 +4,7 @@ import { CartContext } from "../../../context/CartProvider.jsx";
 import CustomButton from "../../Atoms/WithCVA/CustomButton.jsx";
 import TitleFlagship from "../../Atoms/InsideCard/TitleFlagship.jsx";
 import ImgFlagship from "../../Atoms/InsideCard/ImgFlagship.jsx";
+import LearnMoreButton from "../../Atoms/WithCVA/LearnMoreButton.jsx";
 
 export default function BannerCard() {
   const [dataPoco, setDataPoco] = useState([]);
@@ -24,9 +25,9 @@ export default function BannerCard() {
     getApiPoco();
   }, []);
 
-  const firstPostIndex = postsPerPage - 1; // 7 = 8 - 1
-  const lastPostIndex = currentPage + 1; // 8 = 7 + 1
-  const currentBannerImg = dataPoco.slice(firstPostIndex, lastPostIndex); // index ke 7, (sampai) index ke 8
+  // const firstPostIndex = postsPerPage - 1; // 7 = 8 - 1
+  // const lastPostIndex = currentPage + 1; // 8 = 7 + 1
+  const currentBannerImg = dataPoco.slice(currentPage, postsPerPage); // index ke 7, (sampai) index ke 8
 
   return (
     <>
@@ -49,7 +50,8 @@ export default function BannerCard() {
                     hover="bg_soft"
                     onClick={() => addToCart(poco)}
                   />
-                  <CustomButton
+                  <LearnMoreButton
+                    id={poco.id}
                     text="Learn More >"
                     intent="white_nobg"
                     rounded="yes"
@@ -61,6 +63,7 @@ export default function BannerCard() {
               </div>
             </div>
             <ImgFlagship
+              id={poco.id}
               PhonePicDesktop={poco.imgBannerDesktop}
               PhonePicMobile={poco.imgBannerMobile}
             ></ImgFlagship>
