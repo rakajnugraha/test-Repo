@@ -1,14 +1,33 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { router } from "./routers";
+import React from "react";
+// import { Outlet, useLocation } from "react-router-dom";
+import { DynamicThemeProvider } from "./context/DynamicThemeContext";
+import { CartProvider } from "./context/CartProvider";
+import Header from "./components/organism/Header/Header";
+import Footer from "./components/organism/Footer";
 import { RouterProvider } from "react-router-dom";
+import { router } from "./routers";
 
 function App() {
+  // Use the useLocation hook to get the current location
+  // const location = useLocation();
+
+  // Conditionally render the Header and Footer based on the location
+  // NavBar and Footer will not be rendered at account page
+  // const showHeader =
+  //   location.pathname !== "/account" || location.pathname !== "/checkout"; // Example condition
+  // const showFooter = location.pathname !== "/account"; // Example condition
+
   return (
     <>
-      <main>
-        <RouterProvider router={router} />
-        <Outlet />
-      </main>
+      <DynamicThemeProvider>
+        <CartProvider>
+          <Header />
+          <main>
+            <RouterProvider router={router} />
+          </main>
+          <Footer />
+        </CartProvider>
+      </DynamicThemeProvider>
     </>
   );
 }
