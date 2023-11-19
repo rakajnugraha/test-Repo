@@ -181,10 +181,8 @@ body {
 
 /* CART CSS START */
 
-
-
 #cart-quantity-buttons {
- border: 1px solid black;
+  border: 1px solid black;
 }
 
 /* CART CSS END */
@@ -277,7 +275,7 @@ select:focus {
   height: max-content;
 }
 
-#account-forms input:not([type="checkbox"]){
+#account-forms input:not([type="checkbox"]) {
   border: 1px solid rgb(213, 213, 213);
   background: var(--color-input-background);
   color: #999;
@@ -365,6 +363,10 @@ select:focus {
 
 /* ACCOUNT CSS END */
 
-
-
-
+/* Tab CSS Active */
+.tab.active {
+  font-weight: normal;
+  color: #ff6900;
+  border-color: #ff6900;
+  background-color: #ff6a002c;
+}
